@@ -25,10 +25,10 @@ RUN curl -LO https://get.helm.sh/helm-v${HELM_VERSION}-linux-${ARCH}.tar.gz && \
 RUN curl -LO "https://storage.googleapis.com/kubernetes-release/release/v${KUBECTL_VERSION}/bin/linux/${ARCH}/kubectl" && \
     chmod +x ./kubectl && mv ./kubectl /usr/local/bin/kubectl
 
-COPY ../app/requirements.txt /app/
+COPY app/requirements.txt /app/
 
 RUN pip install -r /app/requirements.txt
 
-COPY ../app/*.py ../app/.appargs.yml /app/
+COPY app/*.py app/.appargs.yml /app/
 
 ENTRYPOINT [ "python", "/app/main.py" ]

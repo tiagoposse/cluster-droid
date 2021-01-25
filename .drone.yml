@@ -11,10 +11,10 @@ steps:
 - name: build
   image: registry.tiagoposse.com/kaniko-arm:1.2.0
   commands:
-  - printf "`cat cluster-droid/VERSION`,latest" > .tags
+  - printf "`cat VERSION`,latest" > .tags
   - >
-    /kaniko/executor --dockerfile=./cluster-droid/Dockerfile
-    --context=cluster-droid
+    /kaniko/executor --dockerfile=./docker/Dockerfile
+    --context=.
     --cache=true --cache-repo=registry.tiagoposse.com/cluster-droid
     --destination=registry.tiagoposse.com/cluster-droid
     --build-arg=HELM_VERSION=3.4.2
