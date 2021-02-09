@@ -1,14 +1,10 @@
 ARG VAULT_VERSION
-ARG YQ_VERSION=4.4.0
 
 FROM vault:${VAULT_VERSION} as vault
-
-FROM mikefarah/yq:${YQ_VERSION} as yq
 
 FROM python:3.9-slim
 
 COPY --from=vault /bin/vault /usr/local/bin
-COPY --from=yq /usr/bin/yq /usr/local/bin
 
 ARG ARCH=arm64
 ARG HELM_VERSION
